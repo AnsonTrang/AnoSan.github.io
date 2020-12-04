@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Anson's Amazing Website</title>
+        <style>
+        body {
+            background: rgb(40,40, 40);
+            color: rgb(45, 45, 45);
+            padding: 10px;
+            font-family: monospace;
+        }
+        #all-contents {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        /* navigation menu */
+        nav {
+            background: #000000;
+            margin: 0 auto;
+            margin-bottom: 20px;
+            display: flex;
+            padding: 10px;
+        }
+        h1 {
+            display: flex;
+            align-items: center;
+            color: #C0C0C0;
+            flex: 1;
+            margin: 0;
+        }
+        #nav-ul {
+            list-style-image: none;
+        }
+        .nav-li {
+            display: inline-block;
+            padding: 0 10px;
+        }
+        a {
+            text-decoration: none;
+            color: #C0C0C0;
+        }
+
+        /* main container area beneath menu */
+        main {
+            background: white;
+            display: flex;
+        }
+        .sidebar {
+            margin-right: 25px;
+            padding: 10px;
+        }
+        .sidebar-img {
+            width: 200px;
+        }
+        .content {
+            flex: 1;
+            padding: 15px;
+        }
+        #interests {
+            border: 4px silver ridge;
+            padding: 8px;
+        }
+        h2, h3 {
+            margin: 0px;
+        }
+        #border1 {
+        border: 2px;
+        padding: 7px;
+        border-radius: 15px;
+        }
+
+        #border2 {
+        border: 2px;
+        padding: 7px;
+        border-radius: 50px 20px;
+        }
+        </style>
+    </head>
+
+    <body>
+        <div id="all-contents">
+            <!--Content All Here Goes-->
+            <nav id="border1">
+                <h1>Anson Trang's Personal Blogspace</h1>
+                <ul id="nav-ul">
+                    <li class="nav-li">
+                        <a href="index.html"> Home </a>
+                    </li>
+                    <li class="nav-li">
+                        <a href="portfolio.hyml"> Portfolio </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <main id="border2">
+                <!--Sidebar Section-->
+                <div class="sidebar">
+                    <img class="sidebar-img" src="https://media.istockphoto.com/vectors/geometric-running-man-vector-id503427908?k=6&m=503427908&s=612x612&w=0&h=JYJM_Z3FndQuCHYZGs_DTLD6KZJ3uLpBmDkzLNxsXBM=" >
+                </div>
+                <!--Content Section-->
+                <div class="content">
+                    <h2>Anson Trang</h2>
+                        <p>Student of NorthShore Highschool - Honorary School Runner</p>
+                        <!--Interests Section-->
+                        <div id="intrests">
+                            <h3>Interests</h3>
+                            <ul>
+                                <li>Running</li>
+                                <li>Coding</li>
+                                <li>Education</li>
+                            </ul>
+                        </div>
+                </div>
+            </main>
+        </div>
+    </body>
+</html>
