@@ -57,6 +57,35 @@
                 flex: 1;
                 padding: 15px;
             }
+            /* portfolio styles */
+            .content h1 {
+                color: black;
+            }
+            #portfolio {
+                list-style-type: none;
+                padding-left: 0;
+                }
+            #portfolio li {
+                background: #fff;
+                padding: 10px;
+                border-radius: 10px;
+                margin-bottom: 10px;
+                }
+            #portfolio li:hover {
+                background: #eee;
+                } 
+                
+            #portfolio a {
+                text-decoration: none;
+                color: #454545;
+                }
+            #interests {
+                border: 4px silver ridge;
+                padding: 8px;
+            }
+            h2, h3 {
+                margin: 0px;
+            }
             #interests {
                 border: 4px silver ridge;
                 padding: 8px;
@@ -69,16 +98,19 @@
             padding: 7px;
             border-radius: 15px;
             }
-
             #border2 {
             border: 2px;
             padding: 7px;
             border-radius: 50px 20px;
             }
+            #colorStyle {
+            color: black;
+            }
         </style>
     </head>
 
     <body>
+        <!--All content goes here-->
         <div id="all-contents">
             <nav id="border1">
                 <h1>My Programs</h1>
@@ -93,7 +125,7 @@
             </nav> 
             <main id="border2">
                 <div class="content">
-                    <h1>Portfolio</h1>
+                    <h1 id="colorStyle">Portfolio</h1>
                     <ul id="portfolio">
                         <li><a href="projects/platformer/">Platformer : A cannon - dodging, collectible - grabbing adventure game for Anson</a></li>
                         <li><a href="projects/bouncing-box/">Bouncing Box : A project that gives you a taste of game development on the web </a></li>
