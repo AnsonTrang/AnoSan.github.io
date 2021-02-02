@@ -6,6 +6,7 @@
 	<script src="jquery.min.js"></script>
 	<style>
 		.box {
+            user-select: none;
 			width: 70px;
 			height: 70px;
 			background-color: teal;
@@ -13,14 +14,20 @@
 			text-align: center;
 			display: block;
 			position: absolute;
-			top: 100px;
+			top: 115px;
 			left: 0px;  /* <--- Change me! */
+            background-image: url(https://img.pngio.com/png-squares-square-background-freetoedit-png-squares-378_377.png) 
 		}
+        .board {
+        background-image: url(https://img.pngio.com/png-squares-square-background-freetoedit-png-squares-378_377.png)
+        
+        }
 	</style>
 	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
 
 </head>
 <body class="board">
+
 	<!-- HTML for the box -->
 	<div class="box">?</div>
 
@@ -58,28 +65,40 @@
 			//////////////////////////////////////////////////////////////////
 			
 			// TODO 2 - Variable declarations 
-			
-
-			
+            var positionX = 50;
+            var points = 0;
+			var speed = 10;
 			/* 
 			This Function will be called 20 times/second. Each time it is called,
 			it should move the Box to a new location. If the box drifts off the screen
 			turn it around! 
 			*/
 			function update() {
-				
-
+				moveBoxTo(positionX);
+                positionX += speed;
+                if (positionX > boardWidth) {
+                    speed = -speed;
+                }
+                if (positionX < 0) {
+                    speed = -speed;
+                }
 			};
-
+            update();
 			/* 
 			This Function will be called each time the box is clicked. Each time it is called,
 			it should increase the points total, increase the speed, and move the box to
 			the left side of the screen.
 			*/
 			function handleBoxClick() {
-				
-
-
+                positionX = 0;
+                points += 1;
+                changeBoxText(points);
+                if (speed > 0 ) {
+                    speed += 3;
+                }
+                if (speed < 0) {
+                    speed -= 3;
+                }
 			};
 		})();
 	</script>
