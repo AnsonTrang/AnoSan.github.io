@@ -30,7 +30,7 @@ var init = function (window) {
             circles.push(circle);
         } 
         // TODO 3 / 7 : Call the drawCircle() function 
-        for (var  i = 0; i < 10; i++) {
+        for (var  i = 0; i < 100; i++) {
             drawCircle();
         }
         ////////////////////////////////////////////////////////////
@@ -60,6 +60,7 @@ var init = function (window) {
         */
         game.checkCirclePosition = function(circle) {
 
+            
             // if the circle has gone past the RIGHT side of the screen then place it on the LEFT
             if ( circle.x > canvas.width ) {
                 circle.x = 0;
