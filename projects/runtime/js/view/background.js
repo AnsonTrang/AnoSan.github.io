@@ -62,7 +62,7 @@ var background = function (window) {
                 var building = draw.rect(75,buildingHeight,buildingColor,'',1);
                 building.x = 200*i;
                 building.y = groundY-buildingHeight;
-                buildingSpeed[i] = Math.random() * (6 - 1) + 1;
+                buildingSpeed[i] = Math.random() * (3 - 0.5) + 0.5;
                 background.addChild(building);
                 buildings.push(building);
             }

@@ -27,10 +27,21 @@ var level01 = function (window) {
 
         // TODO 6 and on go here
         // BEGIN EDITING YOUR CODE HERE
+        function createSawBlade (xParam, YParam) {
+            var hitZoneSize = 25;
+            var damageFromObstacle = 10;
+            var sawBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);
+            sawBladeHitZone.x = xParam;
+            sawBladeHitZone.y = YParam;
+            game.addGameItem(sawBladeHitZone);  
+            var obstacleImage = draw.bitmap('img/sawblade.png');
+            sawBladeHitZone.addChild(obstacleImage);
+            obstacleImage.x = -25;
+            obstacleImage.y = -25;  
+        }
 
-        
-        
-        
+        createSawBlade(400, 300);
+        createSawBlade(400, 220);
         // DO NOT EDIT CODE BELOW HERE
     }
 };
