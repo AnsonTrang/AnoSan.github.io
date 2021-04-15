@@ -29,6 +29,7 @@ var background = function (window) {
         var tree;
         var buildings = [];
         var buildingSpeed = [];
+        var colorBank = ['#EA66E1','#C457BD','#9E4899','#773A74','#512B50','#2B1C2C'];
         // called at the start of game and whenever the page is resized
         // add objects for display in background. draws each image added to the background once
         function render() {
@@ -57,9 +58,10 @@ var background = function (window) {
             // TODO 5: Part 1 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
             for(var i=0;i<Math.random() * (100 - 50) + 50;++i) {
                 var buildingHeight = Math.random() * (500 - 50) + 50;
-                var building = draw.rect(75,buildingHeight,'','Black',1);
+                var buildingColor = colorBank[Math.floor(Math.random() * (5))];
+                var building = draw.rect(75,buildingHeight,buildingColor,'',1);
                 building.x = 200*i;
-                building.y = groundY-buildingHeight-1;
+                building.y = groundY-buildingHeight;
                 buildingSpeed[i] = Math.random() * (6 - 1) + 1;
                 background.addChild(building);
                 buildings.push(building);
