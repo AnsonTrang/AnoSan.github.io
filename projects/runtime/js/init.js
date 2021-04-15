@@ -24,13 +24,13 @@ var init = function (window) {
         playerManager, 
         particleManager;
     
-    var debugHalleHitZones = true;
+    var debugHalleHitZones = false;
 
     space = app.space;
     rules = app.rules,
     particleManager = opspark.makeParticleManager(app.stage);
     ground = opspark.makeGround(app);
-
+    
     // TODO 2 : add background
     var background = opspark.makeBackground(app,ground);
     view.addChild(background);

@@ -37,11 +37,11 @@ var level01 = function (window) {
             var obstacleImage = draw.bitmap('img/sawblade.png');
             sawBladeHitZone.addChild(obstacleImage);
             obstacleImage.x = -25;
-            obstacleImage.y = -25;  
+            obstacleImage.y = -25;
         }
 
-        createSawBlade(400, 300);
-        createSawBlade(400, 220);
+        createSawBlade(400, groundY - 25);
+        createSawBlade(400, groundY - 110);
         // DO NOT EDIT CODE BELOW HERE
     }
 };
