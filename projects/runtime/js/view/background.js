@@ -29,7 +29,7 @@ var background = function (window) {
         var tree;
         var buildings = [];
         var buildingSpeed = [];
-        var colorBank = ['#EA66E1','#C457BD','#9E4899','#773A74','#512B50','#2B1C2C'];
+        var colorBank = ['#2B1C2C','#512B50','#773A74','#9E4899','#C457BD','#EA66E1'];
         // called at the start of game and whenever the page is resized
         // add objects for display in background. draws each image added to the background once
         function render() {
@@ -57,14 +57,16 @@ var background = function (window) {
                 background.addChild(moon);
             // TODO 5: Part 1 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
             for(var i=0;i<Math.random() * (100 - 50) + 50;++i) {
+                buildingSpeed[i] = Math.random() * (2 - 0.5) + 0.5;
                 var buildingHeight = Math.random() * (500 - 50) + 50;
-                var buildingColor = colorBank[Math.floor(Math.random() * (5))];
+                var buildingColor = colorBank[Math.floor(buildingSpeed[i])];
                 var building = draw.rect(75,buildingHeight,buildingColor,'',1);
                 building.x = 200*i;
                 building.y = groundY-buildingHeight;
-                buildingSpeed[i] = Math.random() * (3 - 0.5) + 0.5;
+                
                 background.addChild(building);
                 buildings.push(building);
+
             }
 
             // TODO 4: Part 1 - Add a tree

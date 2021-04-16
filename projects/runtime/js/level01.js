@@ -42,6 +42,11 @@ var level01 = function (window) {
 
         createSawBlade(400, groundY - 25);
         createSawBlade(400, groundY - 110);
+
+        function createMyObstacles (x, y) {
+            var hitZoneSize = 25;
+        }
+        createMyObstacle(100,200);
         // DO NOT EDIT CODE BELOW HERE
     }
 };
