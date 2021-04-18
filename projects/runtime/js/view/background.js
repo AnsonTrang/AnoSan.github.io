@@ -56,17 +56,17 @@ var background = function (window) {
                 }
                 background.addChild(moon);
             // TODO 5: Part 1 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
+            
+            
             for(var i=0;i<Math.random() * (100 - 50) + 50;++i) {
-                buildingSpeed[i] = Math.random() * (2 - 0.5) + 0.5;
+                buildingSpeed[i] = Math.random() * (5 - 0.5) + 0.5;
                 var buildingHeight = Math.random() * (500 - 50) + 50;
                 var buildingColor = colorBank[Math.floor(buildingSpeed[i])];
                 var building = draw.rect(75,buildingHeight,buildingColor,'',1);
                 building.x = 200*i;
                 building.y = groundY-buildingHeight;
-                
                 background.addChild(building);
                 buildings.push(building);
-
             }
 
             // TODO 4: Part 1 - Add a tree
