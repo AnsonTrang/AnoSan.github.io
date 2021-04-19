@@ -43,10 +43,23 @@ var level01 = function (window) {
         createSawBlade(400, groundY - 25);
         createSawBlade(400, groundY - 110);
 
-        function createMyObstacles (x, y) {
-            var hitZoneSize = 25;
+        var enemy = game.createGameItem('enemy',25);
+        var redSquare = draw.rect(50,50,'red');
+        redSquare.x = -25;
+        redSquare.y = -25;
+        enemy.addChild(redSquare);
+        enemy.x = 400;
+        enemy.y = groundY-50;
+        enemy.velocityX = -1;
+        enemy.onPlayerCollision = function() {
+            game.changeIntegrity(-10);
+            enemy.fadeOut();
+        };
+        enemy.onProjectileCollision = function() {
+            game.increaseScore(100);
+            enemy.fadeOut();
         }
-        createMyObstacles(100,200);
+        game.addGameItem(enemy);
         // DO NOT EDIT CODE BELOW HERE
     }
 };
