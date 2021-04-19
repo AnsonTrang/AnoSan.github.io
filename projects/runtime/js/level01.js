@@ -46,7 +46,7 @@ var level01 = function (window) {
         function createMyObstacles (x, y) {
             var hitZoneSize = 25;
         }
-        createMyObstacle(100,200);
+        createMyObstacles(100,200);
         // DO NOT EDIT CODE BELOW HERE
     }
 };

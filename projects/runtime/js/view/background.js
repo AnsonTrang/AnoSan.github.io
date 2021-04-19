@@ -26,9 +26,12 @@ var background = function (window) {
         var background;
 
         // ANIMATION VARIABLES HERE:
-        var tree;
+        var tree; //Will not be used.
+        var maxBuildingsPerType = 16;
+        var minimumBuildingsPerType = 2;
         var buildings = [];
         var buildingSpeed = [];
+        var buildingHeightMax = 500;
         var colorBank = ['#2B1C2C','#512B50','#773A74','#9E4899','#C457BD','#EA66E1'];
         // called at the start of game and whenever the page is resized
         // add objects for display in background. draws each image added to the background once
@@ -56,18 +59,29 @@ var background = function (window) {
                 }
                 background.addChild(moon);
             // TODO 5: Part 1 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
-            
-            
-            for(var i=0;i<Math.random() * (100 - 50) + 50;++i) {
-                buildingSpeed[i] = Math.random() * (5 - 0.5) + 0.5;
-                var buildingHeight = Math.random() * (500 - 50) + 50;
-                var buildingColor = colorBank[Math.floor(buildingSpeed[i])];
-                var building = draw.rect(75,buildingHeight,buildingColor,'',1);
-                building.x = 200*i;
-                building.y = groundY-buildingHeight;
-                background.addChild(building);
-                buildings.push(building);
+            for(var a=0; a < colorBank.length; a++) {
+                var buildingColor = colorBank[a];
+
+                for (var b=0; b < Math.random() * (maxBuildingsPerType - minimumBuildingsPerType) + minimumBuildingsPerType; b++) {
+                    
+                    var buildingHeight = Math.random() * (buildingHeightMax - 50) + 50;
+                    
+                    var building = draw.rect(75,buildingHeight,buildingColor,'',1);
+                    
+                    building.x = 200*buildings.length;
+                    
+                    building.speed = (Math.random() * (a + 0.5)) + (a - 0.5)
+                    building.speed < 0 ? building.speed = 0.1 : building.speed = building.speed
+                    
+                    building.y = groundY-buildingHeight;
+                    
+                    background.addChild(building);
+                    buildings.push(building);                    
+                }
+
             }
+            
+
 
             // TODO 4: Part 1 - Add a tree
               /*  tree = draw.bitmap('img/tree.png');
@@ -99,11 +113,11 @@ var background = function (window) {
                 
                 
                 var eachBuilding = buildings[i];
-                eachBuilding.x = eachBuilding.x - buildingSpeed[i];
+                eachBuilding.x = eachBuilding.x - eachBuilding.speed;
 
                 if (eachBuilding.x < -210) {
                     eachBuilding.x = canvasWidth;
-                } //Perfectly Parallaxed
+                } 
             }
         } // end of update function - DO NOT DELETE
 
