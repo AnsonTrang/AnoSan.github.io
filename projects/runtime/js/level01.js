@@ -27,6 +27,8 @@ var level01 = function (window) {
 
         // TODO 6 and on go here
         // BEGIN EDITING YOUR CODE HERE
+
+        var hitPoints = 3;
         function createSawBlade (xParam, YParam) {
             var hitZoneSize = 25;
             var damageFromObstacle = 10;
@@ -42,24 +44,48 @@ var level01 = function (window) {
 
         createSawBlade(400, groundY - 25);
         createSawBlade(400, groundY - 110);
+        /*for (var i = 0; i < 20;i++) {
+            createSawBlade(200 * i, Math.random() * (500 - groundY) + groundY);
+        }*/
 
-        var enemy = game.createGameItem('enemy',25);
-        var redSquare = draw.rect(50,50,'red');
-        redSquare.x = -25;
-        redSquare.y = -25;
-        enemy.addChild(redSquare);
-        enemy.x = 400;
-        enemy.y = groundY-50;
-        enemy.velocityX = -1;
-        enemy.onPlayerCollision = function() {
-            game.changeIntegrity(-10);
-            enemy.fadeOut();
-        };
-        enemy.onProjectileCollision = function() {
-            game.increaseScore(100);
-            enemy.fadeOut();
+        
+        function createEnemy(x, y, hp){
+            var enemy = game.createGameItem('enemy',25);
+            var redSquare = draw.rect(50,50,'red');
+            var hitPoints = 0;
+            redSquare.x = -25;
+            redSquare.y = -25;
+            enemy.addChild(redSquare);
+            enemy.x = x;
+            enemy.y = y;
+            enemy.velocityX = -1;
+
+            game.addGameItem(enemy);
+            enemy.onPlayerCollision = function() {
+                game.changeIntegrity(-100);
+                enemy.fadeOut();
+            };
+            enemy.onProjectileCollision = function() {
+                if (hp === 0) {
+                    enemy.fadeOut();
+                }
+                else {
+                    hitPoints = hitPoints + 1;
+                    game.increaseScore(100);
+                    createEnemy(enemy.x + 200, groundY - 50, hp - hitPoints);
+                    enemy.flyTo(enemy.x + 200, groundY -50);   
+                }
+            }
+
         }
-        game.addGameItem(enemy);
+        for(var i = 1; i <= 1; i++) {
+            createEnemy(1000 * i, groundY - 50, 10);
+        }
+        
+        
+        
+
+
         // DO NOT EDIT CODE BELOW HERE
     }
 };

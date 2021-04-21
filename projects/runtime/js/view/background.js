@@ -51,7 +51,7 @@ var background = function (window) {
                 moon.scaleX = .5;
                 moon.scaleY = .5;
 
-                for (var i = 0; i < 200; i++) {
+                for (var i = 0; i < 100; i++) {
                     var circle = draw.circle(1,'white','LightGray',2);
                     circle.x = canvasWidth*Math.random();
                     circle.y = groundY*Math.random();
@@ -69,7 +69,7 @@ var background = function (window) {
                     
                     var building = draw.rect(75,buildingHeight,buildingColor,'',1);
                     
-                    building.x = 200*buildings.length;
+                    building.x = 1000 + (200*buildings.length);
                     
                     building.speed = (Math.random() * (a + 1)) + (a - 0.5)
                     building.speed < 0 ? building.speed = 0.1 : building.speed = building.speed
