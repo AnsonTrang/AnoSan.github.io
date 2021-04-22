@@ -20,7 +20,7 @@ var level01 = function (window) {
                 { "type": "sawblade", "x": 600, "y": groundY },
                 { "type": "sawblade", "x": 900, "y": groundY },
                 { "type": "enemy", "x" : 1000, "y": groundY - 50, "hp": 12},
-                { "type": "reward", "x": 2000, "y": groundY - 50, "health": 10},
+                { "type": "reward", "x": 1500, "y": groundY - 50, "health": -10},
                 { "type": "dodger", "x": 4000, "y": groundY - 50, "hp": 8},
             ]
         };
@@ -45,12 +45,28 @@ var level01 = function (window) {
             obstacleImage.y = -25;
         }
 
+        function createPrize(x, y, health) {
+            var prize = game.createGameItem('prize', 25);
+            var greenSquare = draw.rect(50,50,'green');
+            greenSquare.x = -25;
+            greenSquare.y = -25;
+            prize.addChild(greenSquare);
+            prize.x = x;
+            prize.y = y;
+            prize.velocityX = -2
 
-        /*for (var i = 0; i < 20;i++) {
-            createSawBlade(200 * i, Math.random() * (500 - groundY) + groundY);
-        }*/
+            game.addGameItem(prize);
+            prize.onPlayerCollision = function() {
+                game.changeIntegrity(-health);
+                game.increaseScore(100);
+                prize.fadeOut();
+            }
+            prize.onProjectileCollision = function () {
+                prize.fadeOut();
+                createPrize(prize.x, prize.y, health);
+            }
+        }
 
-        
         function createEnemy(x, y, hp){
             var enemy = game.createGameItem('enemy',25);
             var redSquare = draw.rect(50,50,'red');
@@ -91,7 +107,7 @@ var level01 = function (window) {
                 createEnemy(x,y,accessed.hp);
             }
             else if (accessed.type === "reward") {
-
+                createPrize(x,y,accessed.health);
             }
         }
         
