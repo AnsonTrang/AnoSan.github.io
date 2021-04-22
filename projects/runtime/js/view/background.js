@@ -41,13 +41,21 @@ var background = function (window) {
             // TODO: 2 - Part 2
             // this fills the background with a obnoxious yellow
             // you should modify this to suit your game
-            var backgroundFill = draw.rect(canvasWidth,groundY,'#C724B1');
+            //var canvas = app.canvas;
+            var ctx = canvas.getContext("2d"); 
+            var grd = ctx.createLinearGradient(0,canvasHeight,0,0);
+            grd.addColorStop(0.26, "#ffffff");
+            grd.addColorStop(0.3,"#C724B1");
+            grd.addColorStop(1,"#000000"); 
+            grd.addColorStop(0.1,"#000000");
+            var backgroundFill = draw.rect(canvasWidth, groundY, grd);
             background.addChild(backgroundFill);
+            //this is Tony's work...
 
             // TODO: 3 - Add a moon and starfield
                 var moon = draw.bitmap('img/moon.png');
                 moon.x = canvasWidth / 3;
-                moon.y = canvasHeight - 600;
+                moon.y = canvasHeight - 470;
                 moon.scaleX = .5;
                 moon.scaleY = .5;
 

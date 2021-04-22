@@ -12,13 +12,16 @@ var level01 = function (window) {
         // this data will allow us to define all of the
         // behavior of our game
         var levelData = {
-            "name": "Robot Romp",
+            "name": "Synth Strolling Synthwave Town",
             "number": 1, 
             "speed": -3,
             "gameItems": [
                 { "type": "sawblade", "x": 400, "y": groundY },
                 { "type": "sawblade", "x": 600, "y": groundY },
                 { "type": "sawblade", "x": 900, "y": groundY },
+                { "type": "enemy", "x" : 1000, "y": groundY - 50, "hp": 12},
+                { "type": "reward", "x": 2000, "y": groundY - 50, "health": 10},
+                { "type": "dodger", "x": 4000, "y": groundY - 50, "hp": 8},
             ]
         };
         window.levelData = levelData;
@@ -27,8 +30,8 @@ var level01 = function (window) {
 
         // TODO 6 and on go here
         // BEGIN EDITING YOUR CODE HERE
-
-        var hitPoints = 3;
+        var access = levelData.gameItems;
+        
         function createSawBlade (xParam, YParam) {
             var hitZoneSize = 25;
             var damageFromObstacle = 10;
@@ -42,8 +45,7 @@ var level01 = function (window) {
             obstacleImage.y = -25;
         }
 
-        createSawBlade(400, groundY - 25);
-        createSawBlade(400, groundY - 110);
+
         /*for (var i = 0; i < 20;i++) {
             createSawBlade(200 * i, Math.random() * (500 - groundY) + groundY);
         }*/
@@ -52,7 +54,7 @@ var level01 = function (window) {
         function createEnemy(x, y, hp){
             var enemy = game.createGameItem('enemy',25);
             var redSquare = draw.rect(50,50,'red');
-            var hitPoints = 0;
+            var hits = 0;
             redSquare.x = -25;
             redSquare.y = -25;
             enemy.addChild(redSquare);
@@ -67,19 +69,30 @@ var level01 = function (window) {
             };
             enemy.onProjectileCollision = function() {
                 if (hp === 0) {
-                    enemy.fadeOut();
+                    enemy.shrink();
                 }
                 else {
-                    hitPoints = hitPoints + 1;
+                    hits = hits + 1;
                     game.increaseScore(100);
-                    createEnemy(enemy.x + 200, groundY - 50, hp - hitPoints);
-                    enemy.flyTo(enemy.x + 200, groundY -50);   
+                    enemy.flyTo(enemy.x - 10, groundY -50);
+                    createEnemy(enemy.x - 10, groundY - 50, hp - hits);
                 }
             }
-
+        
         }
-        for(var i = 1; i <= 1; i++) {
-            createEnemy(1000 * i, groundY - 50, 10);
+        for (var i = 0; i < access.length;i++) {
+            var accessed = access[i];
+            var x = accessed.x;
+            var y = accessed.y
+            if (accessed.type === "sawblade") {
+                createSawBlade(x,y);
+            }
+            else if (accessed.type === "enemy") {
+                createEnemy(x,y,accessed.hp);
+            }
+            else if (accessed.type === "reward") {
+
+            }
         }
         
         
