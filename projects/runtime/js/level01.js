@@ -21,7 +21,7 @@ var level01 = function (window) {
                 { "type": "sawblade", "x": 900, "y": groundY },
                 { "type": "enemy", "x" : 1000, "y": groundY - 50, "hp": 12},
                 { "type": "reward", "x": 1500, "y": groundY - 50, "health": -10},
-                { "type": "dodger", "x": 4000, "y": groundY - 50, "hp": 8},
+                { "type": "dodger", "x": 2000, "y": groundY - 50, "hp": 2},
             ]
         };
         window.levelData = levelData;
@@ -96,6 +96,37 @@ var level01 = function (window) {
             }
         
         }
+        
+        function createDodger (x, y, hp) {
+            var dodger = game.createGameItem('dodger',25);
+            var yellowSquare = draw.rect(50,50,'yellow');
+            var hits = 0;
+            yellowSquare.x = -25;
+            yellowSquare.y = -25;
+            dodger.addChild(yellowSquare);
+            dodger.x = x;
+            dodger.y = y;
+            dodger.velocityX = -3;
+
+            game.addGameItem(dodger);
+            dodger.onPlayerCollision = function() {
+                game.changeIntegrity(-100);
+                dodger.fadeOut();
+            };
+            dodger.onProjectileCollision = function() {
+                if (hp === 0) {
+                    dodger.shrink();
+                }
+                else {
+                    hits = hits + 1;
+                    game.increaseScore(100);
+                    dodger.flyTo(dodger.x + 1000 , groundY -50);
+                    createDodger(dodger.x + 1000, groundY - 50, hp - hits);
+                }
+            }
+                    
+        }
+
         for (var i = 0; i < access.length;i++) {
             var accessed = access[i];
             var x = accessed.x;
@@ -108,6 +139,9 @@ var level01 = function (window) {
             }
             else if (accessed.type === "reward") {
                 createPrize(x,y,accessed.health);
+            }
+            else if (accessed.type === "dodger") {
+                createDodger(x,y,accessed.hp);
             }
         }
         
