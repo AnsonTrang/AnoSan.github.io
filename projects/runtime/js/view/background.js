@@ -55,7 +55,7 @@ var background = function (window) {
             // TODO: 3 - Add a moon and starfield
                 var moon = draw.bitmap('img/moon.png');
                 moon.x = canvasWidth / 3;
-                moon.y = groundY / 2.5;
+                moon.y = groundY - 500;
                 moon.scaleX = 1;
                 moon.scaleY = 1;
 
