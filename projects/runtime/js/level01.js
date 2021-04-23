@@ -19,7 +19,7 @@ var level01 = function (window) {
                 { "type": "sawblade", "x": 400, "y": groundY },
                 { "type": "sawblade", "x": 600, "y": groundY },
                 { "type": "sawblade", "x": 900, "y": groundY },
-                { "type": "enemy", "x" : 1000, "y": groundY - 50, "hp": 12},
+                { "type": "enemy", "x" : 1000, "y": groundY - 50, "hp": 50},
                 { "type": "reward", "x": 1500, "y": groundY - 50, "health": 10},
                 { "type": "dodger", "x": 2000, "y": groundY - 50, "hp": 2},
             ]
