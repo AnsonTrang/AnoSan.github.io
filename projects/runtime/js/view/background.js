@@ -32,7 +32,7 @@ var background = function (window) {
         var buildings = [];
         var buildingSpeed = [];
         var buildingHeightMax = 500;
-        var colorBank = ['#2B1C2C','#512B50','#773A74','#9E4899','#C457BD','#EA66E1'];
+        var colorBank = ['rgba(0, 0, 0, 0.75)','rgba(40, 28, 64, 0.75)','rgba(83, 57, 132, 0.75)','rgba(115, 80, 180, 0.75)','rgba(152, 126, 200, 0.75)','rgba(184, 166, 217, 0.75)'];
         // called at the start of game and whenever the page is resized
         // add objects for display in background. draws each image added to the background once
         function render() {
@@ -55,9 +55,9 @@ var background = function (window) {
             // TODO: 3 - Add a moon and starfield
                 var moon = draw.bitmap('img/moon.png');
                 moon.x = canvasWidth / 3;
-                moon.y = canvasHeight - 470;
-                moon.scaleX = .5;
-                moon.scaleY = .5;
+                moon.y = groundY / 2.5;
+                moon.scaleX = 1;
+                moon.scaleY = 1;
 
                 for (var i = 0; i < 100; i++) {
                     var circle = draw.circle(1,'white','LightGray',2);

@@ -62,7 +62,7 @@ var level01 = function (window) {
                 prize.fadeOut();
             }
             prize.onProjectileCollision = function () {
-                prize.fadeOut();
+                prize.shrink();
                 createPrize(prize.x, prize.y, health);
             }
         }
