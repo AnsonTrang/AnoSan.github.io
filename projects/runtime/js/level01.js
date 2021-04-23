@@ -90,8 +90,8 @@ var level01 = function (window) {
                 else {
                     hits = hits + 1;
                     game.increaseScore(100);
-                    enemy.flyTo(enemy.x - 10, groundY -50);
-                    createEnemy(enemy.x - 10, groundY - 50, hp - hits);
+                    enemy.flyTo(enemy.x - 1, groundY -50);
+                    createEnemy(enemy.x - 1, groundY - 50, hp - hits);
                 }
             }
         
