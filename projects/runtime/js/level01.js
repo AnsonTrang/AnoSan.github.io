@@ -16,12 +16,9 @@ var level01 = function (window) {
             "number": 1, 
             "speed": -3,
             "gameItems": [
-                { "type": "sawblade", "x": 400, "y": groundY },
-                { "type": "sawblade", "x": 600, "y": groundY },
-                { "type": "sawblade", "x": 900, "y": groundY },
-                { "type": "enemy", "x" : 1000, "y": groundY - 50, "hp": 12},
-                { "type": "reward", "x": 1500, "y": groundY - 50, "health": -10},
-                { "type": "dodger", "x": 4000, "y": groundY - 50, "hp": 8},
+                { "amt": 25},
+                { "type": "reward", "x": 1500, "y": groundY - 50, "health": 10},
+                { "type": "dodger", "x": 2000, "y": groundY - 50, "hp": 2},
             ]
         };
         window.levelData = levelData;
@@ -31,16 +28,44 @@ var level01 = function (window) {
         // TODO 6 and on go here
         // BEGIN EDITING YOUR CODE HERE
         var access = levelData.gameItems;
-        
-        function createSawBlade (xParam, YParam) {
+
+        for (var i = 1; i < access[0].amt; i++) {
+            access.push({ "type": "car", "x": i * (Math.random() * (1000 - 800) + 800), "y": groundY});
+            access.push({ "type": "jet", "x": i * (Math.random() * (1000 - 800) + 800), "y": groundY - 50, "hp" : 2});
+
+        }
+
+        for (var i = 0; i < access.length;i++) {
+            var accessed = access[i];
+            var x = accessed.x;
+            var y = accessed.y
+            if (accessed.type === "car") {
+                createCar(x ,y);
+            }
+            else if (accessed.type === "jet") {
+                createEnemy(x,y,accessed.hp);
+            }
+            else if (accessed.type === "reward") {
+                createPrize(x,y,accessed.health);
+            }
+            else if (accessed.type === "dodger") {
+                createDodger(x,y,accessed.hp);
+            }
+        }
+
+
+
+        function createCar (xParam, YParam) {
             var hitZoneSize = 25;
             var damageFromObstacle = 10;
-            var sawBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);
-            sawBladeHitZone.x = xParam;
-            sawBladeHitZone.y = YParam;
-            game.addGameItem(sawBladeHitZone);  
-            var obstacleImage = draw.bitmap('img/sawblade.png');
-            sawBladeHitZone.addChild(obstacleImage);
+            var carHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);
+            carHitZone.x = xParam;
+            carHitZone.y = YParam;
+            game.addGameItem(carHitZone);  
+            var obstacleImage = draw.bitmap('img/Synthwave Car.png');
+            obstacleImage.scaleX = 0.1;
+            obstacleImage.scaleY = 0.1;
+            carHitZone.addChild(obstacleImage);
             obstacleImage.x = -25;
             obstacleImage.y = -25;
         }
@@ -57,30 +82,32 @@ var level01 = function (window) {
 
             game.addGameItem(prize);
             prize.onPlayerCollision = function() {
-                game.changeIntegrity(-health);
+                game.changeIntegrity(health);
                 game.increaseScore(100);
                 prize.fadeOut();
             }
             prize.onProjectileCollision = function () {
-                prize.fadeOut();
+                prize.shrink();
                 createPrize(prize.x, prize.y, health);
             }
         }
 
         function createEnemy(x, y, hp){
-            var enemy = game.createGameItem('enemy',25);
-            var redSquare = draw.rect(50,50,'red');
+            var enemy = game.createGameItem('jet',25);
+            var jet = draw.bitmap('img/FighterJet.png');
             var hits = 0;
-            redSquare.x = -25;
-            redSquare.y = -25;
-            enemy.addChild(redSquare);
+            jet.x = -25;
+            jet.y = -25;
+            jet.scaleX = 0.1;
+            jet.scaleY = 0.1;
+            enemy.addChild(jet);
             enemy.x = x;
             enemy.y = y;
-            enemy.velocityX = -1;
+            enemy.velocityX = -4;
 
             game.addGameItem(enemy);
             enemy.onPlayerCollision = function() {
-                game.changeIntegrity(-100);
+                game.changeIntegrity(-10);
                 enemy.fadeOut();
             };
             enemy.onProjectileCollision = function() {
@@ -90,26 +117,44 @@ var level01 = function (window) {
                 else {
                     hits = hits + 1;
                     game.increaseScore(100);
-                    enemy.flyTo(enemy.x - 10, groundY -50);
-                    createEnemy(enemy.x - 10, groundY - 50, hp - hits);
+                    enemy.flyTo(enemy.x - 100, groundY -50);
+                    createEnemy(enemy.x - 100, groundY - 50, hp - hits);
                 }
             }
         
         }
-        for (var i = 0; i < access.length;i++) {
-            var accessed = access[i];
-            var x = accessed.x;
-            var y = accessed.y
-            if (accessed.type === "sawblade") {
-                createSawBlade(x,y);
+        
+        function createDodger (x, y, hp) {
+            var dodger = game.createGameItem('dodger',25);
+            var yellowSquare = draw.rect(50,50,'yellow');
+            var hits = 0;
+            yellowSquare.x = -25;
+            yellowSquare.y = -25;
+            dodger.addChild(yellowSquare);
+            dodger.x = x;
+            dodger.y = y;
+            dodger.velocityX = -3;
+
+            game.addGameItem(dodger);
+            dodger.onPlayerCollision = function() {
+                game.changeIntegrity(-100);
+                dodger.fadeOut();
+            };
+            dodger.onProjectileCollision = function() {
+                if (hp === 0) {
+                    dodger.shrink();
+                }
+                else {
+                    hits = hits + 1;
+                    game.increaseScore(100);
+                    dodger.flyTo(dodger.x + 1000 , groundY -50);
+                    createDodger(dodger.x + 1000, groundY - 50, hp - hits);
+                }
             }
-            else if (accessed.type === "enemy") {
-                createEnemy(x,y,accessed.hp);
-            }
-            else if (accessed.type === "reward") {
-                createPrize(x,y,accessed.health);
-            }
+                    
         }
+
+
         
         
         
