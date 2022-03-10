@@ -26,7 +26,7 @@ function runProgram(){
   let score = {
     leftID: $('#left'),
     rightID: $('#right'),
-    scoreMax: 1,
+    scoreMax: 10,
   }
 
   // Game Item Objects
