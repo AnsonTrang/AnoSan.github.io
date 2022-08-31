@@ -1,3 +1,87 @@
+:root {
+    --color: hsl(0, 3%, 23%);
+    --color2:hsl(0, 3%, 53%);
+    --color3:hsl(0, 3%, 42%);
+}
+
+/* Flex Modifiers */
+
+.flex-container {
+    display: flex;
+}
+
+.flex-item {
+    flex: 1;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+/* Flex Groups */
+
+.flex-container.flex-center {
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Fake AI*/
+
+aside {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    margin: 0%;
+    overflow: hidden;
+}
+
+#FAI{
+    /*animation*/
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    
+    /*settings*/
+    width: inherit;
+    height: inherit;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.splash-text {
+    font-size: 100px;
+    color: var(--color);
+    font-family:monospace;
+}
+/* Content */
+
+body {
+    background-color: var(--color);
+    padding: 0%;
+    margin: 0;
+    overflow: hidden;
+}
+
+main {
+    display: grid;
+    width: 50%;
+    height: 100vh;
+}
+
+/*
 body {
     background: rgb(40,40, 40);
     color: rgb(45, 45, 45);
@@ -8,7 +92,9 @@ body {
     max-width: 800px;
     margin: auto;
 }
+*/
 /* navigation menu */
+/*
 nav {
     background: #000000;
     margin: 0 auto;
@@ -43,7 +129,9 @@ a {
     text-decoration: none;
     color: #C0C0C0;
 }
+*/
 /* main container area beneath menu */
+/*
 main {
     background: white;
     display: flex;
@@ -59,7 +147,9 @@ main {
     flex: 1;
     padding: 15px;
 }
+*/
 /* portfolio styles */
+/*
 .content h1 {
     color: black;
 }
@@ -80,3 +170,4 @@ border: 2px;
 padding: 7px;
 border-radius: 50px 20px;
 }
+*/
