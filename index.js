@@ -1,10 +1,12 @@
-$(document).ready(runProgram); //Checks if the CSS and HTML are laded.
+$(document).ready(runProgram); //Checks if the CSS and HTML are laded before running the program.
 
 //Main Program
 function runProgram() {
     console.log("PROGRAM LOADED");
 
-    $(".splash-text").text(welcomeMessage());
+    typing(welcomeMessage());
+
+
 }
 
 function welcomeMessage() {
@@ -15,14 +17,16 @@ function welcomeMessage() {
         "Welcome, nice to meet you!", 
         "Hello there!", 
         "Salutations!",
+        "Welcome!",
         "Good " + currentTime() + "!",
         "Hello, world", 
         "Hey, you.",
+        "Kept you waiting, huh?",
+        "Hey!",
+        
     ];
     var messageNum = getRandomInt(0, firstMessages.length);
     var messages = firstMessages[messageNum];
-
-    
 
     return messages;
 }
@@ -31,12 +35,27 @@ function welcomeMessage() {
 function messageEngine(messageArray) {
     console.log("Running Message Engine");
 
-    for (var i = 0; i < messageArray.length; i++) {
-        
-    }
+    let numerator = 0;
+    
+    $.on("click", function(e) {
+        numerator++;
+    })
 }
 
 //Additive Programs
+function typing(message) {
+    //This is a program that types words!
+    
+    console.log("Typing Message")
+
+    var messageChar = message.length;
+    
+    $(".splash-text").css({
+        "width": `${messageChar}` + "ch",
+        "animation": `typing 1s steps(${messageChar}), blink .5s step-end infinite alternate`,
+    }).text(message);
+}
+
 function currentTime() {
     console.log("Checking for Time");
 
