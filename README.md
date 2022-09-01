@@ -1,2 +1,2 @@
 # AnsonTrang.github.io
-A complimentary part of education, advancement and program awareness.
+A testing ground for personal innovation, to reach new heights, and achieve greater understanding of the technological world.
