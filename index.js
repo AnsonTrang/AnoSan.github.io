@@ -14,19 +14,20 @@ function welcomeMessage() {
     
     var firstMessages = [
         "First time here?", 
-        "Welcome, nice to meet you!", 
+        "Nice to meet you!", 
         "Hello there!", 
         "Salutations!",
         "Welcome!",
         "Good " + currentTime() + "!",
-        "Hello, world", 
+        "Hello, world.", 
         "Hey, you.",
         "Kept you waiting, huh?",
         "Hey!",
         
     ];
-    var messageNum = getRandomInt(0, firstMessages.length);
-    var messages = firstMessages[messageNum];
+    
+    var selectedMessage = getRandomInt(0, firstMessages.length);
+    var messages = firstMessages[selectedMessage];
 
     return messages;
 }
