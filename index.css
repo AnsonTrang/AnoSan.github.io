@@ -65,31 +65,41 @@ aside {
 
     color: var(--color);
 
-
     white-space: nowrap;
     overflow: hidden;
-    border-right: 3px solid;
+    /*border-right: 3px solid;*/
     font-family: monospace;
     font-size: 5em;
 }
 
-@keyframes typing {
-    from {
-      width: 0
+.typing {
+    margin-left: 10px;
+}
+
+.typing::after {
+    content: "";
+    width: 1px;
+    height: 5%;
+    border-right: 2px solid white;
+    animation: blink 0.5s infinite ease;
+}
+
+@keyframes blink{
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }
-      
-  @keyframes blink {
-    50% {
-      border-color: transparent
-    }
-}
+
 /* Content */
 
     /* Extra small devices (phones, 600px and down) */
     @media only screen and (max-width: 600px) {
         .splash-text {
             font-size: 2em;
+            
         }
     }
 

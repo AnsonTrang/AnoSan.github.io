@@ -1,66 +1,60 @@
-$(document).ready(runProgram); //Checks if the CSS and HTML are laded before running the program.
+$(document).ready(typeProgram); //Checks if the CSS and HTML are laded before running the program.
 
 //Main Program
-function runProgram() {
+function typeProgram() {
     console.log("PROGRAM LOADED");
-
-    typing(welcomeMessage());
-
-
-}
-
-function welcomeMessage() {
-    console.log("Running Welcome Message");
     
-    var firstMessages = [
-        "First time here?", 
-        "Nice to meet you!", 
-        "Hello there!", 
-        "Salutations!",
-        "Welcome!",
-        "Good " + currentTime() + "!",
-        "Hello, world.", 
-        "Hey, you.",
-        "Kept you waiting, huh?",
-        "Hey!",
-        
+    var defaultMessage = "My name is Anson";
+
+    let firstMessages = [
+        ["First time here?", defaultMessage,"Let me show you around!"], 
+        ["Nice to meet you!", defaultMessage], 
+        ["Hello there!", "How are you?", defaultMessage], 
+        ["Salutations!", defaultMessage],
+        ["Welcome!", defaultMessage, "And this is my portfolio!"],
+        ["Good " + currentTime() + "!", defaultMessage],
+        ["Hello, world.", "Welcome!", defaultMessage], 
+        ["Hey, you.", "You're finally awake.", "You were trying to cross the border", "Right?", "Walked right into that imperial ambush", "Same as us", "And that thief over there."],
+        ["Kept you waiting, huh?", "What took so long?", "Coding this website."],
+        ["Hey!", "Listen!", "Hey!", "Hey!", "Listen!"],
     ];
-    
-    var selectedMessage = getRandomInt(0, firstMessages.length);
-    var messages = firstMessages[selectedMessage];
 
-    return messages;
+    let selectedMessage = getRandomInt(0, firstMessages.length); //selects the first message
+    let msgCount = 0;
+    let index = 0;
+    let currentMsg = "";
+    let letter = "";
+
+    (async function type() {
+
+        if (msgCount === selectedMessage.length) {
+            return;
+        }
+        
+        currentMsg = firstMessages[selectedMessage][msgCount]; console.log(currentMsg);
+        letter = currentMsg.slice(0, ++index);
+        
+        $(".typing").text(letter);
+
+        if (letter.length === currentMsg.length) {
+            await sleep(2000);
+            msgCount++;
+            index = 0;
+        }
+
+        setTimeout(type, 100);
+    }());
 }
 
-//Message Engine
-function messageEngine(messageArray) {
-    console.log("Running Message Engine");
-
-    let numerator = 0;
-    
-    $.on("click", function(e) {
-        numerator++;
-    })
-}
-
-//Additive Programs
-function typing(message) {
-    //This is a program that types words!
-    
-    console.log("Typing Message")
-
-    var messageChar = message.length;
-    
-    $(".splash-text").css({
-        "width": `${messageChar}` + "ch",
-        "animation": `typing 1s steps(${messageChar}), blink .5s step-end infinite alternate`,
-    }).text(message);
+//additive flavors
+function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 function currentTime() {
     console.log("Checking for Time");
 
-    var time = new Date().getHours();
+    let time = new Date().getHours();
 
     if (time >= 0 && time < 12) {return ("morning");}
     if (time >= 12 && time < 18) {return ("afternoon");}
