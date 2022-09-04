@@ -31,7 +31,7 @@ function typeProgram() {
             return;
         }
         
-        currentMsg = firstMessages[selectedMessage][msgCount]; console.log(currentMsg);
+        currentMsg = firstMessages[7/*selectedMessage*/][msgCount]; console.log(currentMsg);
         letter = currentMsg.slice(0, ++index);
         
         $(".typing").text(letter);
