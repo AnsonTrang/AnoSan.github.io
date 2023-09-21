@@ -43,28 +43,44 @@ function runProgram() {
   ]
   
   
-  var randomizeCharacter = (function randomCharacter() {
-    body();
-    hairstyles();
-    face();
-  }());
-  
+  var randomizeCharacter = (function () {
+    // Define the randomizeCharacter function
+    function randomizeCharacter() {
+        body();
+        hairstyles();
+        face();
+    }
+
+    // Invoke the randomizeCharacter function once when the website loads
+    randomizeCharacter();
+
+    // Return the randomizeCharacter function
+    return randomizeCharacter;
+  })();
+
   function body() {
     const randomBody = bodies[Math.floor(Math.random() * bodies.length)];
     $("#body").attr("src", randomBody);
   }
-  
+
   function hairstyles() {
     const randomHair = hair[Math.floor(Math.random() * hair.length)];
     $("#hair").attr("src", randomHair);
   }
-  
+
   function face() {
     const randomFace = faces[Math.floor(Math.random() * faces.length)];
     $("#eyes").attr("src", randomFace);
   }
-}
 
+  document.addEventListener("click", function(){
+    console.log("Click");
+    // Now you can call randomizeCharacter
+    randomizeCharacter();
+  });
+
+
+}
 
 
 
