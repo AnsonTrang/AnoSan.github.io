@@ -78,11 +78,4 @@ function runProgram() {
     // Now you can call randomizeCharacter
     randomizeCharacter();
   });
-
-
 }
-
-
-
-
-
